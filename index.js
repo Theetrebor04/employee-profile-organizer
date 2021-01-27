@@ -1,6 +1,11 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
+const Employee = require("./lib/employee");
+
 function startingPrompt() {
     inquirer.prompt([
         {
@@ -32,9 +37,15 @@ function addManager() {
         },
     ])
 
-        .then(function() {
+        .then(function(data) {
+            const name = data.name
+            const id = 1 
+            const email = data.email
+            const officeNumber = data.officeNumber
+            const addTeamMember = new Manager(name, id, email, officNumber)
+            finalTeamArray.push(teamMember)
             addTeamMembers();
-        })
+        });
 
 }
 
@@ -54,9 +65,15 @@ function addEngineer() {
         }
     ])
 
-    .then(function() {
-        addTeamMembers();
-    })
+        .then(function() {
+            const name = data.name
+            const id = finalTeamArray.length + 1
+            const email = data.email
+            const github = data.github
+            const teamMember = new Engineer(name, id, email, github)
+            finalTeamArray.push(teamMember)
+            addTeamMembers();
+    });
 }
 
 function addIntern() {
@@ -75,9 +92,15 @@ function addIntern() {
         }
     ])
 
-    .then(function() {
-        addTeamMembers();
-    })
+        .then(function() {
+            const name = data.name
+            const id = finalTeamArray.length + 1 
+            const email = data.email
+            const school = data.school
+            const teamMember = new Intern(name, id, email, school)
+            finalTeamArray.push(teamMember)
+            addTeamMembers();
+    });
 }
 
 function addEmployee() {
@@ -92,9 +115,14 @@ function addEmployee() {
         },
     ])
 
-    .then(function() {
-        addTeamMembers();
-    })
+        .then(function() {
+            const name = data.name
+            const id = finalTeamArray.length + 1
+            const email = data.email
+            const teamMember = new Employee(name, id, email)
+            finalTeamArray.push(teamMember)
+            addTeamMembers();
+    });
 }
 
 function addTeamMembers () {
